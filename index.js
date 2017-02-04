@@ -46,6 +46,7 @@ app.post('/api/photo',function(req,res){
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
         }
+        
         setTimeout(function() {
           res.redirect("/upload");
         },1000);
