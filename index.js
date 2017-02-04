@@ -1,5 +1,10 @@
 let fs = require('fs'),
-    PDFParser = require("pdf2json");
+    PDFParser = require("pdf2json"),
+    express = require('express'),
+    app = express();
+
+
+app.use(express.static(__dirname + '/static'));
 
 let pdfParser = new PDFParser(this,1);
 
@@ -13,3 +18,5 @@ function parseResume(pdf,out) {
 
   pdfParser.loadPDF(pdf);
 }
+
+parseResume(__dirname + "/static/assets/data/resumes/resume2.pdf",__dirname+ "/resume_data/resume2.json")
