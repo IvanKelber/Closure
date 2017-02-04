@@ -5,8 +5,11 @@ let fs = require('fs'),
     app = express(),
     http = require('http').Server(app);
 
+let pdfParser = new PDFParser(this,1);
+
 var port = process.env.PORT || 8000
 
+//Multer middleware.  This determines how to handle the uploaded file (destination and filename)
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, __dirname + '/static/assets/data/resumes');
@@ -16,6 +19,7 @@ var storage =   multer.diskStorage({
   }
 });
 
+//Callback used when user hits 'upload' button.
 
 var upload = multer({ storage : storage}).single('uploaded_resume');
 
@@ -28,8 +32,8 @@ app.use(express.static(__dirname + '/static'));
 app.get('/', function(req,res) {
   res.sendFile(__dirname + "/index.html");
 });
-app.get('/lol',function(req,res) {
-  res.sendFile(__dirname + "/lol.html")
+app.get('/upload',function(req,res) {
+  res.sendFile(__dirname + "/upload.html")
 })
 //**POSTS**
 app.post('/api/photo',function(req,res){
@@ -42,7 +46,9 @@ app.post('/api/photo',function(req,res){
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
         }
-        res.end("File is uploaded");
+        setTimeout(function() {
+          res.redirect("/upload");
+        },1000);
     });
 });
 
@@ -51,7 +57,6 @@ http.listen(port,function() {
   console.log("Listening on ",port);
 });
 
-let pdfParser = new PDFParser(this,1);
 
 function parseResume(pdf,out) {
   // pdf: a path to a pdf resume
