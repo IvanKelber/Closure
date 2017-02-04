@@ -1,24 +1,54 @@
 let fs = require('fs'),
     PDFParser = require("pdf2json"),
+    multer = require('multer'),
     express = require('express'),
     app = express(),
     http = require('http').Server(app);
 
 var port = process.env.PORT || 8000
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, __dirname + '/static/assets/data/resumes');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '_' + Date.now());
+  }
+});
+
+
+var upload = multer({ storage : storage}).single('uploaded_resume');
+
 //SET UP STATIC ASSETS FOLDER
 app.use(express.static(__dirname + '/static'));
 
-//SERVE HTML AND BEGIN LISTENING
+
+//==========ROUTES===================
+//**GET**
 app.get('/', function(req,res) {
   res.sendFile(__dirname + "/index.html");
 });
-http.listen(port,function() {
-  console.log("Listening on ",port);
-});
-
 app.get('/lol',function(req,res) {
   res.sendFile(__dirname + "/lol.html")
 })
+//**POST**
+app.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file: ",err);
+        }
+        if(req.file) {
+          var out = __dirname + "/resume_data/" + req.file.filename;
+          parseResume(req.file.path,out)
+        }
+        res.end("File is uploaded");
+    });
+});
+
+//LISTEN
+http.listen(port,function() {
+  console.log("Listening on ",port);
+});
 
 let pdfParser = new PDFParser(this,1);
 
@@ -33,4 +63,4 @@ function parseResume(pdf,out) {
   pdfParser.loadPDF(pdf);
 }
 
-parseResume(__dirname + "/static/assets/data/resumes/resume2.pdf",__dirname+ "/resume_data/resume2.json")
+parseResume(__dirname + "/static/assets/data/resumes/resume2.pdf", __dirname+ "/resume_data/resume2.json")
