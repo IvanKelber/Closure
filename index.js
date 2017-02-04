@@ -24,19 +24,20 @@ app.use(express.static(__dirname + '/static'));
 
 
 //==========ROUTES===================
-//**GET**
+//**GETS**
 app.get('/', function(req,res) {
   res.sendFile(__dirname + "/index.html");
 });
 app.get('/lol',function(req,res) {
   res.sendFile(__dirname + "/lol.html")
 })
-//**POST**
+//**POSTS**
 app.post('/api/photo',function(req,res){
     upload(req,res,function(err) {
         if(err) {
             return res.end("Error uploading file: ",err);
         }
+        //If file was successfully uploaded, convert pdf to text
         if(req.file) {
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
@@ -62,5 +63,3 @@ function parseResume(pdf,out) {
 
   pdfParser.loadPDF(pdf);
 }
-
-parseResume(__dirname + "/static/assets/data/resumes/resume2.pdf", __dirname+ "/resume_data/resume2.json")
