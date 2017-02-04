@@ -9,15 +9,15 @@ var port = process.env.PORT || 8000
 
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './uploads');
+    callback(null, __dirname + '/static/assets/data/resumes');
   },
   filename: function (req, file, callback) {
-    callback(null, file.fieldname + '-' + Date.now());
+    callback(null, file.fieldname + '_' + Date.now());
   }
 });
 
 
-var upload = multer({ storage : storage}).single('userPhoto');
+var upload = multer({ storage : storage}).single('uploaded_resume');
 
 //SET UP STATIC ASSETS FOLDER
 app.use(express.static(__dirname + '/static'));
@@ -36,6 +36,10 @@ app.post('/api/photo',function(req,res){
     upload(req,res,function(err) {
         if(err) {
             return res.end("Error uploading file: ",err);
+        }
+        if(req.file) {
+          var out = __dirname + "/resume_data/" + req.file.filename;
+          parseResume(req.file.path,out)
         }
         res.end("File is uploaded");
     });
