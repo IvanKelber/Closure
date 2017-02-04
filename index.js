@@ -3,11 +3,13 @@ let fs = require('fs'),
 
 let pdfParser = new PDFParser(this,1);
 
-function parseResume(pdf) {
+function parseResume(pdf,out) {
+  // pdf: a path to a pdf resume
+  // out: the specified path for the json output
   pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
   pdfParser.on("pdfParser_dataReady", pdfData => {
-      fs.writeFile("./resume1.json", pdfParser.getRawTextContent());
+      fs.writeFile(out, pdfParser.getRawTextContent());
   });
 
-  pdfParser.loadPDF("./resume1.pdf");
+  pdfParser.loadPDF(pdf);
 }
