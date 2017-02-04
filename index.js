@@ -1,10 +1,21 @@
 let fs = require('fs'),
     PDFParser = require("pdf2json"),
     express = require('express'),
-    app = express();
+    app = express(),
+    http = require('http').Server(app);
 
-
+var port = process.env.PORT || 8000
+//SET UP STATIC ASSETS FOLDER
 app.use(express.static(__dirname + '/static'));
+
+//SERVE HTML AND BEGIN LISTENING
+app.get('/', function(req,res) {
+  res.sendFile(__dirname + "/index.html");
+});
+http.listen(port,function() {
+  console.log("Listening on ",port);
+});
+
 
 let pdfParser = new PDFParser(this,1);
 
