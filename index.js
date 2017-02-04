@@ -30,7 +30,8 @@ app.use(express.static(__dirname + '/static'));
 //==========ROUTES===================
 //**GETS**
 app.get('/', function(req,res) {
-  res.sendFile(__dirname + "/index.html");
+  // res.sendFile(__dirname + "/index.html");
+  res.redirect("/upload");
 });
 app.get('/upload',function(req,res) {
   res.sendFile(__dirname + "/upload.html")
@@ -46,7 +47,7 @@ app.post('/api/photo',function(req,res){
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
         }
-        
+
         setTimeout(function() {
           res.redirect("/upload");
         },1000);
