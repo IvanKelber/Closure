@@ -16,6 +16,9 @@ http.listen(port,function() {
   console.log("Listening on ",port);
 });
 
+app.get('/lol',function(req,res) {
+  res.sendFile(__dirname + "/lol.html")
+})
 
 let pdfParser = new PDFParser(this,1);
 
