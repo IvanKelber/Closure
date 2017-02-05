@@ -30,12 +30,12 @@ if rejected:
 
 
     msg['Subject'] = 'Thank You'
-    recip_file = os.path.join(os.getcwd(), 'static/assets/data/letters/rejected.txt')
+    recip_file = os.path.join(os.getcwd(), 'reject_email.txt')
 else:
     with open(os.path.join(os.getcwd(), 'static/assets/data/letters/accept_letter.txt'),"rb") as fp:
         msg = MIMEText(fp.read())
     msg['Subject'] = 'Congratulations'
-    recip_file = os.path.join(os.getcwd(), '/static/assets/data/letters/accepted.txt')
+    recip_file = os.path.join(os.getcwd(), 'accept_email.txt')
 
 
 
