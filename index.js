@@ -40,7 +40,7 @@ app.get('/upload',function(req,res) {
   res.sendFile(__dirname + "/upload.html")
 })
 app.get('/employer',function(req,res) {
-  res.sendFile(__dirname + "/upload.html")
+  res.sendFile(__dirname + "/employer.html")
 })
 //**POSTS**
 app.post('/api/photo',function(req,res){
