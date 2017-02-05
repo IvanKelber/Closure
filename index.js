@@ -61,6 +61,18 @@ app.post('/api/photo',function(req,res){
     });
 });
 
+app.post('/api/send_email',function(req,res){
+
+
+        sendMail()
+
+        setTimeout(function() {
+          res.redirect("/upload");
+        },100);
+
+
+});
+
 //LISTEN
 http.listen(port,function() {
   console.log("Listening on ",port);
