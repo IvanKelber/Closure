@@ -3,7 +3,9 @@ let fs = require('fs'),
     multer = require('multer'),
     express = require('express'),
     app = express(),
-    http = require('http').Server(app);
+    http = require('http').Server(app),
+    spawn = require("child_process").spawn;
+
 
 let pdfParser = new PDFParser(this,1);
 
@@ -70,3 +72,6 @@ function parseResume(pdf,out) {
 
   pdfParser.loadPDF(pdf);
 }
+
+var process = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
+console.log(process);
