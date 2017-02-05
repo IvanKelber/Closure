@@ -1,0 +1,50 @@
+Ivan Kelber  
+1060 E 18th St ​◆ ​Brooklyn, NY 11230 ​◆​ IvanKelber@gmail.com ​◆​ (646) 243-0952 ​◆ ​github.com/IvanKelber
+ 
+Employment 
+Software Engineering Intern, Charles River Analytics; ​Cambridge, MA ​           ​               ​Summer 2016 
+Used Bayesian Networks to simulate tactical behavior of F-16 jets.  
+Created a simulation environment using Java, NASA WorldWind, and OpenGL 
+ 
+Instructor, iDTech; ​Manhattan, NY             ​  ​Summer 2014, 2015 
+Led a class of advanced high school students in developing Android apps  
+with a focus on OOP and good software design. 
+ 
+Projects 
+Safety Pin              ​Spring 2016 
+Used Google Maps Android API, SQL, Python, OpenStreetMaps, 
+and the NYC crime database to create an app that uses Dijkstra’s Algorithm 
+to route users along the safest path to their destination. 
+ 
+PuddleStore                 Spring 2016 
+A distributed file system written in Go, that uses Tapestry as an overlay network 
+and the Raft consensus algorithm to maintain consistency between 
+nodes.  A CLI allows users to add,  delete, and update files and directories. 
+ 
+Da Vinci Code                        Fall  2016 
+A neural net trained on paintings of a particular style that generates 
+original paintings of that style.  Used TensorFlow and followed the ‘ 
+paper ​Pixel Recurrent Neural Networks​ for general net structure. 
+ 
+Education 
+Brown University                         ​2017 
+Sc.M. Computer Science 
+GPA: 3.5 
+State University of New York at Plattsburgh           ​                2015 
+B.S. Math, Computer Science 
+GPA: 3.94 
+ 
+Other Experience 
+Languages:​ ​Python, Java,  Go, C++, C, Javascript, Matlab 
+Tools:​ ​ ​Android SDK, Unix/Linux, Git, Windows, SQL, D3, NumPy, Arduino, TensorFlow, React 
+ 
+Tutor, Learning Center; ​Plattsburgh, NY                                       ​2011-2015 
+Tutored undergraduate level math courses ranging from  
+basic calculus to upper level differential equations, linear algebra,  
+and theory of computation. 
+ 
+Teaching Assistant; ​Plattsburgh, NY                         ​2013-2014 
+Assisted in teaching a year long calculus course by holding 
+office hours and grading assignments. 
+ 
+----------------Page (0) Break----------------
