@@ -99,9 +99,8 @@ function onTextRead(err,data) {
   if (err) {
     throw err;
   }
-  console.log("on text read");
   var proc = spawn('python',[__dirname+"/python/parser.py"])
   proc.stdout.on('data',function(data) {
-    console.log("data:",data.toString());
+    // console.log("data:",data.toString());
   });
 }
