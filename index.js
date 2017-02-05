@@ -31,14 +31,16 @@ app.use(express.static(__dirname + '/static'));
 //==========ROUTES===================
 //**GETS**
 app.get('/', function(req,res) {
-  // res.sendFile(__dirname + "/index.html");
   res.redirect("/upload");
 });
 app.get('/upload',function(req,res) {
-  res.sendFile(__dirname + "/upload.html")
+  res.sendFile(__dirname + "/upload.html");
 })
 app.get('/employer',function(req,res) {
-  res.sendFile(__dirname + "/employer.html")
+  res.sendFile(__dirname + "/employer.html");
+})
+app.get('/stats',function(req,res) {
+  res.sendFile(__dirname + "/stats.html");
 })
 //**POSTS**
 app.post('/api/photo',function(req,res){
@@ -57,10 +59,9 @@ app.post('/api/photo',function(req,res){
 
           });
         }
-        res.end("FILE UPLOADED");
-        // setTimeout(function() {
-        //   res.redirect("/upload");
-        // },1000);
+        setTimeout(function() {
+          res.redirect("/upload");
+        },100);
     });
 });
 
