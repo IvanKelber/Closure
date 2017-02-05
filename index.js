@@ -7,8 +7,6 @@ let fs = require('fs'),
     http = require('http').Server(app),
     spawn = require("child_process").spawn;
 
-
-
 let pdfParser = new PDFParser(this,1);
 
 var port = process.env.PORT || 8000;
@@ -24,7 +22,6 @@ var storage =   multer.diskStorage({
 });
 
 //Callback used when user hits 'upload' button.
-
 var upload = multer({ storage : storage}).single('uploaded_resume');
 
 //SET UP STATIC ASSETS FOLDER
@@ -68,15 +65,11 @@ app.post('/api/photo',function(req,res){
 });
 
 app.post('/api/send_email',function(req,res){
-
-
         sendMail()
 
         setTimeout(function() {
           res.redirect("/employer");
         },100);
-
-
 });
 
 //LISTEN
@@ -117,6 +110,7 @@ function onTextRead(err,data) {
   if (err) {
     throw err;
   }
+  console.log("ON TEXT READ");
   var proc = spawn('python',[__dirname+"/python/parser.py"])
   proc.stdout.on('data',function(data) {
     console.log("from parser.py:",data.toString());
