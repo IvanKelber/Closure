@@ -7,9 +7,10 @@ let fs = require('fs'),
     spawn = require("child_process").spawn;
 
 
+
 let pdfParser = new PDFParser(this,1);
 
-var port = process.env.PORT || 8000
+var port = process.env.PORT || 8000;
 
 //Multer middleware.  This determines how to handle the uploaded file (destination and filename)
 var storage =   multer.diskStorage({
@@ -38,6 +39,9 @@ app.get('/', function(req,res) {
 app.get('/upload',function(req,res) {
   res.sendFile(__dirname + "/upload.html")
 })
+app.get('/employer',function(req,res) {
+  res.sendFile(__dirname + "/employer.html")
+})
 //**POSTS**
 app.post('/api/photo',function(req,res){
     upload(req,res,function(err) {
@@ -48,6 +52,7 @@ app.post('/api/photo',function(req,res){
         if(req.file) {
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
+          sendMail()
         }
 
         setTimeout(function() {
@@ -73,5 +78,9 @@ function parseResume(pdf,out) {
   pdfParser.loadPDF(pdf);
 }
 
-var process = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
-console.log(process);
+function sendMail() {
+  var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
+  proc.stdout.on('data', function (data){
+  // Do something with the data returned from python script
+  });
+}
