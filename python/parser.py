@@ -71,14 +71,15 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'tmp/')):
     #Decide if Accept or Reject
     outcome = random.randint(0,1)
     #Update the stats file
-    f = open("/static/assets/data/stats.txt", 'r')
+    print os.getcwd()
+    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.txt"), 'r')
     text = []
     for line in f.readlines():
         line = line.split()
         text += [[line[0],line[1],line[2]]]
     f.close()
 
-    f = open("/static/assets/data/stats.txt", 'w')
+    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.txt"), 'w')
     for index in range(len(text)):
         if(index == 0):
             skill = 1
