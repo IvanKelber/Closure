@@ -7,6 +7,7 @@ let fs = require('fs'),
     spawn = require("child_process").spawn;
 
 
+
 let pdfParser = new PDFParser(this,1);
 
 var port = process.env.PORT || 8000;
@@ -74,4 +75,7 @@ function parseResume(pdf,out) {
 }
 
 var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
-console.log(proc);
+proc.stdout.on('data', function (data){
+// Do something with the data returned from python script
+  console.log(data.toString());
+});

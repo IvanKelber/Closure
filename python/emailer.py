@@ -2,6 +2,7 @@
 import smtplib
 import csv
 import sys
+import os
 
 # Import the email modules we'll need
 from email.mime.text import MIMEText
@@ -9,7 +10,7 @@ from email.mime.text import MIMEText
 
 # Create a text/plain message
 
-rejected = sys.argv[1]
+rejected = (sys.argv[1] == "True")
 company_name = sys.argv[2]
 link = sys.argv[3] #https://www.youtube.com/watch?v=3KANI2dpXLw
 
@@ -18,19 +19,27 @@ recips = list()
 
 recip_file = ''
 
-
 if rejected:
-    with open('../reject_letter.txt') as fp:
-        msg = MIMEText(fp.read())
+    print os.path.join(os.getcwd(), 'static/assets/data/letters/rejected_letter.txt')
+    sys.stdout.flush()
+    try:
+        with open(os.path.join(os.getcwd(), 'static/assets/data/letters/rejected_letter.txt'),"rb") as fp:
+            print fp
+            sys.stdout.flush()
+            msg = MIMEText(fp.read())
+    except IOError:
+        print"io error"
+        sys.stdout.flush()
+        sys.stderr.flush()
+
     msg['Subject'] = 'Thank You'
-    recip_file = '../rejected.txt'
-
-
+    recip_file = os.path.join(os.getcwd(), 'static/assets/data/letters/rejected.txt')
 else:
-    with open('../accept_letter.txt') as fp:
-     msg = MIMEText(fp.read())
+    with open(os.path.join(os.getcwd(), 'static/assets/data/letters/accepted_letter.txt'),"rb") as fp:
+        msg = MIMEText(fp.read())
     msg['Subject'] = 'Congratulations'
-    recip_file = '../accepted.txt'
+    recip_file = os.path.join(os.getcwd(), '/static/assets/data/letters/accepted.txt')
+
 
 
 with open(recip_file) as f:
@@ -62,6 +71,8 @@ server.starttls()
 server.login(username,password)
 server.sendmail(username, toaddrs, m)
 server.quit()
+print "hello world"
+sys.stdout.flush()
 
 
 # Send the message via our own SMTP server, but don't include the
