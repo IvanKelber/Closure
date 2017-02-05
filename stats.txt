@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+Total 124 119
+MS 97 36
+BS 16 55
+java 33 68
+python 106 34
+go 88 30
+golang 40 48
+c 48 39
+c\+\+ 114 50
+c# 66 82
+c/c\+\+ 40 63
+ruby 71 1
+javascript 67 49
+jquery 88 86
+html 86 92
+css 4 50
+sql 51 29
+=======
 Total 128 130
 MS 97 36
 BS 16 55
@@ -15,6 +34,7 @@ jquery 88 86
 html 86 92
 css 4 50
 sql 55 40
+>>>>>>> e45a3b6b2cae98a9eb466f293ce881f75e5dd969
 nosql 53 49
 php 81 84
 perl 65 31
@@ -37,7 +57,11 @@ react.js 42 89
 d3.js 86 2
 mysql 66 71
 sympfony 35 78
+<<<<<<< HEAD
+numpy 29 65
+=======
 numpy 33 76
+>>>>>>> e45a3b6b2cae98a9eb466f293ce881f75e5dd969
 hadoop 93 46
 rest 58 82
 restful 43 90
@@ -46,6 +70,20 @@ xml 52 3
 ios 50 42
 gradle 58 2
 maven 14 50
+<<<<<<< HEAD
+android 88 19
+pyramid 62 65
+bash 21 67
+tensorflow 81 48
+r 54 35
+matlab 26 67
+rust 35 83
+.net 5 73
+tornado 92 33
+unix 69 14
+linux 99 35
+git 110 24
+=======
 android 92 30
 pyramid 62 65
 bash 21 67
@@ -58,5 +96,6 @@ tornado 92 33
 unix 73 25
 linux 103 46
 git 114 35
+>>>>>>> e45a3b6b2cae98a9eb466f293ce881f75e5dd969
 vcs 22 7
 statistics 70 50

@@ -92,11 +92,16 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
     f.close()
 
     #Update user email list
-    f = open("email.txt", 'w')
-    s = "%s %d\n" %(temp.email, outcome)
+    if(outcome == 0):
+        f = open("reject_email.txt", 'w')
+    else:
+        f = open("accept_email.txt", 'w')
+    s = "%s\n" %(temp.email)
     f.write(s)
     f.close()
 
+    #Delete the file from resume_data
+    os.remove(os.path.join(path, filename))
     temp.tech_skills = []
 
 print "Parser has ended."
