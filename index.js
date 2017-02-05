@@ -6,7 +6,7 @@ let fs = require('fs'),
     app = express(),
     http = require('http').Server(app),
     spawn = require("child_process").spawn;
-
+    
 let pdfParser = new PDFParser(this,1);
 
 var port = process.env.PORT || 8000;
@@ -84,8 +84,8 @@ http.listen(port,function() {
 function parseResume(pdf,out) {
   // pdf: a path to a pdf resume
   // out: the specified path for the json output
-  pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
-  pdfParser.on("pdfParser_dataReady", pdfData => {
+  pdfParser.once("pdfParser_dataError", errData => console.error(errData.parserError) );
+  pdfParser.once("pdfParser_dataReady", pdfData => {
       fs.writeFile(out, pdfParser.getRawTextContent(),function(err){
         if(err) {
           throw err;
