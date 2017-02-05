@@ -73,7 +73,7 @@ app.post('/api/send_email',function(req,res){
         sendMail()
 
         setTimeout(function() {
-          res.redirect("/upload");
+          res.redirect("/employer");
         },100);
 
 
