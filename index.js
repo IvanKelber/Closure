@@ -6,7 +6,7 @@ let fs = require('fs'),
     app = express(),
     http = require('http').Server(app),
     spawn = require("child_process").spawn;
-    
+
 let pdfParser = new PDFParser(this,1);
 
 var port = process.env.PORT || 8000;
