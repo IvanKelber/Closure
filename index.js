@@ -39,6 +39,9 @@ app.get('/', function(req,res) {
 app.get('/upload',function(req,res) {
   res.sendFile(__dirname + "/upload.html")
 })
+app.get('/employer',function(req,res) {
+  res.sendFile(__dirname + "/upload.html")
+})
 //**POSTS**
 app.post('/api/photo',function(req,res){
     upload(req,res,function(err) {
