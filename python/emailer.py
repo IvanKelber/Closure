@@ -69,6 +69,7 @@ server.login(username,password)
 server.sendmail(username, toaddrs, m)
 server.quit()
 
+open(recip_file, 'w').close()
 
 
 # Send the message via our own SMTP server, but don't include the
