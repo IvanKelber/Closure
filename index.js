@@ -65,7 +65,10 @@ app.post('/api/photo',function(req,res){
 });
 
 app.post('/api/send_email',function(req,res){
-        sendMail()
+        console.log("ok")
+        sendMail("True")
+        sendMail("False")
+        console.log("okay")
 
         setTimeout(function() {
           res.redirect("/employer");
@@ -94,8 +97,8 @@ function parseResume(pdf,out) {
   pdfParser.loadPDF(pdf);
 }
 
-function sendMail() {
-  var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
+function sendMail(accepted) {
+  var proc = spawn('python',[__dirname +"/python/emailer.py", accepted,"The Khal Drogo Venture","urlol.com"]);
   proc.stdout.on('data', function (data){
   // Do something with the data returned from python script
   });
