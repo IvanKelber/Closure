@@ -79,9 +79,18 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
 
     f = open("stats.txt", 'w')
     for index in range(len(text)):
-        s = "%s %d %d\n" %(text[index][0], int(text[index][1]) + (1-outcome), int(text[index][2]) + outcome)
+        if(index == 0):
+            skill = 1
+        else:
+            skill = text[index][0] in temp.tech_skills
+        if(skill):
+            skill = 1
+        else:
+            skill = 0
+        s = "%s %d %d\n" %(text[index][0], int(text[index][1]) + skill*(1-outcome), int(text[index][2]) + skill*outcome)
         f.write(s)
     f.close()
+    temp.tech_skills = []
 
 
 
