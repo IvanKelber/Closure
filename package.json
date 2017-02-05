@@ -6,8 +6,26 @@
     "pdf2json": "^1.1.7"
   },
   "devDependencies": {
-  "should": "~7.1.0",
-  "mocha": "~2.3.3",
-  "supertest": "~1.1.0"
-}
+    "should": "~7.1.0",
+    "mocha": "~2.3.3",
+    "supertest": "~1.1.0"
+  },
+  "name": "closure",
+  "version": "1.0.0",
+  "description": "you lose, good day sir",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start" : "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanKelber/Closure.git"
+  },
+  "author": "Ivan,Shreyas,Zach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/IvanKelber/Closure/issues"
+  },
+  "homepage": "https://github.com/IvanKelber/Closure#readme"
 }
