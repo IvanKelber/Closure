@@ -72,14 +72,14 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'tmp/')):
     outcome = random.randint(0,1)
     #Update the stats file
     print os.getcwd()
-    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.txt"), 'r')
+    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.tsv"), 'r')
     text = []
     for line in f.readlines():
         line = line.split()
         text += [[line[0],line[1],line[2]]]
     f.close()
 
-    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.txt"), 'w')
+    f = open(os.path.join(os.getcwd(),"static/assets/data/stats.tsv"), 'w')
     for index in range(len(text)):
         if(index == 0):
             skill = 1
@@ -89,7 +89,7 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'tmp/')):
             skill = 1
         else:
             skill = 0
-        s = "%s %d %d\n" %(text[index][0], int(text[index][1]) + skill*(1-outcome), int(text[index][2]) + skill*outcome)
+        s = "%s\t%d\t%d\n" %(text[index][0], int(text[index][1]) + skill*(1-outcome), int(text[index][2]) + skill*outcome)
         f.write(s)
     f.close()
 
