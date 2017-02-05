@@ -52,7 +52,7 @@ app.post('/api/photo',function(req,res){
         if(req.file) {
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
-          sendMail()
+          // sendMail()
         }
 
         setTimeout(function() {
@@ -72,7 +72,12 @@ function parseResume(pdf,out) {
   // out: the specified path for the json output
   pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
   pdfParser.on("pdfParser_dataReady", pdfData => {
-      fs.writeFile(out, pdfParser.getRawTextContent());
+      fs.writeFile(out, pdfParser.getRawTextContent(),function(err){
+        if(err) {
+          throw err;
+        }
+        parseText(out,onTextRead);
+      });
   });
 
   pdfParser.loadPDF(pdf);
@@ -82,5 +87,20 @@ function sendMail() {
   var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
   proc.stdout.on('data', function (data){
   // Do something with the data returned from python script
+  });
+}
+
+function parseText(out,callback) {
+  //nothing yet
+  fs.readFile(out,'utf-8',callback);
+}
+
+function onTextRead(err,data) {
+  if (err) {
+    throw err;
+  }
+  var proc = spawn('python',[__dirname+"/python/parser.py"])
+  proc.stdout.on('data',function(data) {
+    console.log(data);
   });
 }
