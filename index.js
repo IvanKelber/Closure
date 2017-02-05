@@ -1,4 +1,5 @@
 let fs = require('fs'),
+    fse = require('fs-extra'),
     PDFParser = require("pdf2json"),
     multer = require('multer'),
     express = require('express'),
@@ -50,9 +51,14 @@ app.post('/api/photo',function(req,res){
         }
         //If file was successfully uploaded, convert pdf to text
         if(req.file) {
-          var out = __dirname + "/resume_data/" + req.file.filename;
-          parseResume(req.file.path,out)
-          // sendMail()
+          var dir = __dirname + "/tmp/"
+          fse.ensureDir(dir,function(err) {
+            if(err) {
+              throw err;
+            }
+            parseResume(req.file.path,dir+req.file.filename);
+
+          });
         }
 
         setTimeout(function() {
@@ -113,6 +119,6 @@ function onTextRead(err,data) {
   }
   var proc = spawn('python',[__dirname+"/python/parser.py"])
   proc.stdout.on('data',function(data) {
-    // console.log("data:",data.toString());
+    console.log("from parser.py:",data.toString());
   });
 }
