@@ -93,9 +93,9 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
 
     #Update user email list
     if(outcome == 0):
-        f = open("reject_email.txt", 'w')
+        f = open("reject_email.txt", 'a')
     else:
-        f = open("accept_email.txt", 'w')
+        f = open("accept_email.txt", 'a')
     s = "%s\n" %(temp.email)
     f.write(s)
     f.close()
