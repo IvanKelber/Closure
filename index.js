@@ -9,7 +9,7 @@ let fs = require('fs'),
 
 let pdfParser = new PDFParser(this,1);
 
-var port = process.env.PORT || 8000
+var port = process.env.PORT || 8000;
 
 //Multer middleware.  This determines how to handle the uploaded file (destination and filename)
 var storage =   multer.diskStorage({
@@ -73,5 +73,5 @@ function parseResume(pdf,out) {
   pdfParser.loadPDF(pdf);
 }
 
-var process = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
-console.log(process);
+var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
+console.log(proc);
