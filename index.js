@@ -52,6 +52,7 @@ app.post('/api/photo',function(req,res){
         if(req.file) {
           var out = __dirname + "/resume_data/" + req.file.filename;
           parseResume(req.file.path,out)
+          sendMail()
         }
 
         setTimeout(function() {
@@ -77,8 +78,9 @@ function parseResume(pdf,out) {
   pdfParser.loadPDF(pdf);
 }
 
-var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
-proc.stdout.on('data', function (data){
-// Do something with the data returned from python script
-  console.log(data.toString());
-});
+function sendMail() {
+  var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
+  proc.stdout.on('data', function (data){
+  // Do something with the data returned from python script
+  });
+}
