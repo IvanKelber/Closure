@@ -57,10 +57,10 @@ app.post('/api/photo',function(req,res){
 
           });
         }
-
-        setTimeout(function() {
-          res.redirect("/upload");
-        },1000);
+        res.end("FILE UPLOADED");
+        // setTimeout(function() {
+        //   res.redirect("/upload");
+        // },1000);
     });
 });
 
