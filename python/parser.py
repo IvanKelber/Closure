@@ -90,9 +90,14 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
         s = "%s %d %d\n" %(text[index][0], int(text[index][1]) + skill*(1-outcome), int(text[index][2]) + skill*outcome)
         f.write(s)
     f.close()
+
+    #Update user email list
+    f = open("email.txt", 'w')
+    s = "%s %d\n" %(temp.email, outcome)
+    f.write(s)
+    f.close()
+
     temp.tech_skills = []
 
-
-
-
-    #Update the appropriate stats file with applicant inf0
+print "Parser has ended."
+sys.stdout.flush()
