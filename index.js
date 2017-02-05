@@ -101,6 +101,6 @@ function onTextRead(err,data) {
   }
   var proc = spawn('python',[__dirname+"/python/parser.py"])
   proc.stdout.on('data',function(data) {
-    console.log(data);
+    // console.log("data:",data.toString());
   });
 }
