@@ -20,22 +20,19 @@ recips = list()
 recip_file = ''
 
 if rejected:
-    print os.path.join(os.getcwd(), 'static/assets/data/letters/rejected_letter.txt')
-    sys.stdout.flush()
     try:
-        with open(os.path.join(os.getcwd(), 'static/assets/data/letters/rejected_letter.txt'),"rb") as fp:
+        with open(os.path.join(os.getcwd(), 'static/assets/data/letters/reject_letter.txt'),"rb") as fp:
             print fp
             sys.stdout.flush()
             msg = MIMEText(fp.read())
     except IOError:
-        print"io error"
-        sys.stdout.flush()
-        sys.stderr.flush()
+        print "io error"
+
 
     msg['Subject'] = 'Thank You'
     recip_file = os.path.join(os.getcwd(), 'static/assets/data/letters/rejected.txt')
 else:
-    with open(os.path.join(os.getcwd(), 'static/assets/data/letters/accepted_letter.txt'),"rb") as fp:
+    with open(os.path.join(os.getcwd(), 'static/assets/data/letters/accept_letter.txt'),"rb") as fp:
         msg = MIMEText(fp.read())
     msg['Subject'] = 'Congratulations'
     recip_file = os.path.join(os.getcwd(), '/static/assets/data/letters/accepted.txt')
@@ -71,8 +68,7 @@ server.starttls()
 server.login(username,password)
 server.sendmail(username, toaddrs, m)
 server.quit()
-print "hello world"
-sys.stdout.flush()
+
 
 
 # Send the message via our own SMTP server, but don't include the

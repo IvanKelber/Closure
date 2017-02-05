@@ -77,5 +77,4 @@ function parseResume(pdf,out) {
 var proc = spawn('python',[__dirname +"/python/emailer.py", "True","The Khal Drogo Venture","urlol.com"]);
 proc.stdout.on('data', function (data){
 // Do something with the data returned from python script
-  console.log(data.toString());
 });
