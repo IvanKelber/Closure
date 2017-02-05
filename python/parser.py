@@ -3,6 +3,7 @@ import sys
 import os
 import re
 import random
+import shutil
 
 #Applicant Object
 class Applicant:
@@ -15,10 +16,10 @@ class Applicant:
 
 #Open all files in a directory 'resume_data'
 #os.chdir(os.path.dirname(os.getcwd()))
-for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
+for filename in os.listdir(os.path.join(os.getcwd(), 'tmp/')):
     #Gather data about Applicant
     path = os.path.join('../', os.getcwd())
-    path = os.path.join(path, 'resume_data/')
+    path = os.path.join(path, 'tmp/')
     f = open (os.path.join(path, filename), 'r')
 
     temp = Applicant()
@@ -104,5 +105,9 @@ for filename in os.listdir(os.path.join(os.getcwd(), 'resume_data/')):
     os.remove(os.path.join(path, filename))
     temp.tech_skills = []
 
+
+path = os.path.join('../', os.getcwd())
+path = os.path.join(path, 'tmp/')
+shutil.rmtree(path)
 print "Parser has ended."
 sys.stdout.flush()
